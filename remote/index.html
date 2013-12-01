@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Socket.io Test</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style type="text/css">
+            #chat_users {
+                width: 200px;
+            }
+        </style>
+        <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+		<script>
+		  var socket = io.connect('wss://localhost:3000');
+
+          socket.on('info', function (data) {
+            console.log(data);
+          });
+          
+		</script>
+    </head>
+    <body>
+
+        
+        <form id="chat_form" action="" type="post">
+            <select id="chat_users"></select><br/>
+            <input id="chat_input" type="text" />
+            <button id="chat_btn" type="submit">Submit</button>
+        </form>
+        <div id="chat_box"></div>
+
+        <script type="text/javascript">
+        var chat_input = document.getElementById('chat_input'),
+            chat_btn = document.getElementById('chat_btn'),
+            chat_form = document.getElementById('chat_form'),
+            chat_users = document.getElementById('chat_users'),
+            chat_box = document.getElementById('chat_box');
+
+        function addMsg(data) {
+            var html =  "<div class='msg'>" + data.user + " : " + data.msg + "</div>";
+            chat_box.insertAdjacentHTML('afterbegin', html);
+        }
+
+        chat_form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            var data = {};
+                data.msg = chat_input.value;
+                data.user = 'me';
+            if (data.msg == '') return;
+            socket.emit('chat', data);
+            addMsg(data);
+            chat_input.value = '';
+        });
+
+        socket.on('echo', function(data) {
+            addMsg(data);
+        });
+
+        socket.on('news', function (data) {
+            console.log('news received');
+            console.log(data.sockets);
+            chat_users.insertAdjacentHTML('beforeend', '<option>'+data.user+'</option>')
+        });
+
+        </script>
+
+
+    </body>
+</html>
