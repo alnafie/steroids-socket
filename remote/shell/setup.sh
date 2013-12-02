@@ -17,3 +17,4 @@ sudo service nginx start #localhost:8080 working
 sudo apt-get install redis-server
 sudo cp /etc/redis/redis.conf /etc/redis/redis.conf.default #to keep copy of redis .conf
 sudo cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.default #same for nginx
+sudo rm /etc/nginx/sites-enabled/default

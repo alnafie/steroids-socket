@@ -11,9 +11,9 @@
                 width: 200px;
             }
         </style>
-        <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+        <script type="text/javascript" src="http://localhost/static/socket.io.js"></script>
 		<script>
-		  var socket = io.connect('wss://localhost:3000');
+		  var socket = io.connect('http://localhost/msg');
 
           socket.on('info', function (data) {
             console.log(data);
