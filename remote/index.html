@@ -11,9 +11,12 @@
                 width: 200px;
             }
         </style>
+        <!--
         <script type="text/javascript" src="http://localhost/static/socket.io.js"></script>
+        -->
+        <script type="text/javascript" src="http://localhost/msg/socket.io/socket.io.js"></script>
 		<script>
-		  var socket = io.connect('http://localhost/msg');
+		  var socket = io.connect('http://localhost/msg', { resource : 'msg/socket.io' });
 
           socket.on('info', function (data) {
             console.log(data);
