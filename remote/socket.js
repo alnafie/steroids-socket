@@ -5,11 +5,12 @@ io.sockets.on('connection', function (socket) {
 
   var socket = socket;
   
-  io.sockets.emit('news', {hello: "world"});
+  socket.emit('news', {hello: "world"});
 
-  // socket.on('chat', function (data) {
-  // 	data.user = socket.id;
-  // 	socket.broadcast.emit('echo', data);
-  // });
+  socket.on('chat', function (data) {
+  	data.user = socket.id;
+  	socket.broadcast.emit('echo', data);
+  	io.sockets.emit('news', "chat received")
+  });
 
 });
