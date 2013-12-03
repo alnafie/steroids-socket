@@ -18,7 +18,7 @@
 		<script>
 		  var socket = io.connect('http://localhost/msg', { resource : 'msg/socket.io' });
 
-          socket.on('info', function (data) {
+          socket.on('news', function (data) {
             console.log(data);
           });
           
@@ -35,37 +35,37 @@
         <div id="chat_box"></div>
 
         <script type="text/javascript">
-        var chat_input = document.getElementById('chat_input'),
-            chat_btn = document.getElementById('chat_btn'),
-            chat_form = document.getElementById('chat_form'),
-            chat_users = document.getElementById('chat_users'),
-            chat_box = document.getElementById('chat_box');
+        // var chat_input = document.getElementById('chat_input'),
+        //     chat_btn = document.getElementById('chat_btn'),
+        //     chat_form = document.getElementById('chat_form'),
+        //     chat_users = document.getElementById('chat_users'),
+        //     chat_box = document.getElementById('chat_box');
 
-        function addMsg(data) {
-            var html =  "<div class='msg'>" + data.user + " : " + data.msg + "</div>";
-            chat_box.insertAdjacentHTML('afterbegin', html);
-        }
+        // function addMsg(data) {
+        //     var html =  "<div class='msg'>" + data.user + " : " + data.msg + "</div>";
+        //     chat_box.insertAdjacentHTML('afterbegin', html);
+        // }
 
-        chat_form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            var data = {};
-                data.msg = chat_input.value;
-                data.user = 'me';
-            if (data.msg == '') return;
-            socket.emit('chat', data);
-            addMsg(data);
-            chat_input.value = '';
-        });
+        // chat_form.addEventListener('submit', function(e) {
+        //     e.preventDefault();
+        //     var data = {};
+        //         data.msg = chat_input.value;
+        //         data.user = 'me';
+        //     if (data.msg == '') return;
+        //     socket.emit('chat', data);
+        //     addMsg(data);
+        //     chat_input.value = '';
+        // });
 
-        socket.on('echo', function(data) {
-            addMsg(data);
-        });
+        // socket.on('echo', function(data) {
+        //     addMsg(data);
+        // });
 
-        socket.on('news', function (data) {
-            console.log('news received');
-            console.log(data.sockets);
-            chat_users.insertAdjacentHTML('beforeend', '<option>'+data.user+'</option>')
-        });
+        // socket.on('news', function (data) {
+        //     console.log('news received');
+        //     console.log(data.sockets);
+        //     chat_users.insertAdjacentHTML('beforeend', '<option>'+data.user+'</option>')
+        // });
 
         </script>
 
