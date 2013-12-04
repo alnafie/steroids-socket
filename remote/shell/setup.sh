@@ -13,10 +13,11 @@ git config --global user.email alnafie@gmail.com
 
 # nvm / node setup
 curl https://raw.github.com/creationix/nvm/master/install.sh | sh
-nvm install 0.10	#need to restart terminal after installing nvm? yes, figure it out -TA
+source ~/.profile	# this should eliminate need to restart terminal
+nvm install 0.10 && nvm use 0.10
 nvm alias default 0.10
 
-# nginx setup
+# nginx setup v.1.4.3
 sudo apt-get install libpcre3 libpcre3-dev -y
 sudo wget -P /usr/src http://nginx.org/download/nginx-1.4.3.tar.gz
 cd /usr/src/ && sudo tar -xzvf nginx-1.4.3.tar.gz
