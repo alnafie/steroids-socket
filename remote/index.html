@@ -10,6 +10,23 @@
             #chat_users {
                 width: 200px;
             }
+            table {
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            table td {
+                border: 1px solid #999;
+                padding: 5px;
+            }
+            #wrapper {
+                width: 320px;
+                position: relative;
+            }
+            form#chat_form {
+                width: 100%;
+                margin-bottom: 20px;
+            }
         </style>
         <!--
         <script type="text/javascript" src="http://localhost/static/socket.io.js"></script>
@@ -26,24 +43,25 @@
     </head>
     <body>
 
-        
-        <img src="http://localhost/static/mvc.gif" />
-        <form id="chat_form" action="" type="post">
-            <select id="chat_users"></select><br/>
-            <input id="chat_input" type="text" />
-            <button id="chat_btn" type="submit">Submit</button>
-        </form>
-        <div id="chat_box"></div>
+        <div id="wrapper">
+            <h1>Alo</h1>
+            <form id="chat_form" action="" type="post">
+                <!-- <select id="chat_users"></select><br/> -->
+                <input id="chat_input" type="text" autocomplete="off" />
+                <button id="chat_btn" type="submit">Submit</button>
+            </form>
+            <table id="chat_box"></table>
+        </div>
 
         <script type="text/javascript">
         var chat_input = document.getElementById('chat_input'),
             chat_btn = document.getElementById('chat_btn'),
             chat_form = document.getElementById('chat_form'),
-            chat_users = document.getElementById('chat_users'),
+            // chat_users = document.getElementById('chat_users'),
             chat_box = document.getElementById('chat_box');
 
         function addMsg(data) {
-            var html =  "<div class='msg'>" + data.user + " : " + data.msg + "</div>";
+            var html =  "<tr class='msg'><td>" + data.user + "</td><td>" + data.msg + "</td></tr>";
             chat_box.insertAdjacentHTML('afterbegin', html);
         }
 
@@ -64,8 +82,6 @@
 
         socket.on('news', function (data) {
             console.log('news received');
-            console.log(data.sockets);
-            chat_users.insertAdjacentHTML('beforeend', '<option>'+data.user+'</option>')
         });
 
         </script>
