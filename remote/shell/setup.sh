@@ -18,9 +18,11 @@ nvm install 0.10 && nvm use 0.10
 nvm alias default 0.10
 
 # nginx setup v.1.4.3
-sudo apt-get install libpcre3 libpcre3-dev -y
-sudo wget -P /usr/src http://nginx.org/download/nginx-1.4.3.tar.gz
-cd /usr/src/ && sudo tar -xzvf nginx-1.4.3.tar.gz
+#sudo apt-get install libpcre3 libpcre3-dev -y
+sudo apt-get install libpcre3 libpcre3-dev libpcrecpp0 libssl-dev zlib1g-dev -y
+# sudo wget -P /usr/src http://nginx.org/download/nginx-1.4.3.tar.gz
+# cd /usr/src/ && sudo tar -xzvf nginx-1.4.3.tar.gz
+cd /usr/src && sudo curl http://nginx.org/download/nginx-1.4.3.tar.gz | sudo tar xvz
 cd /usr/src/nginx-1.4.3 && sudo ./configure
 sudo make
 sudo make install
