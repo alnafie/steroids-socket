@@ -4,7 +4,7 @@
 steroids.config.name = "My New Application"
 
 # -- Initial Location --
-steroids.config.location = "index.html"
+steroids.config.location = "http://88.80.184.198/"
 
 # -- Tab Bar --
 # steroids.config.tabBar.enabled = true
